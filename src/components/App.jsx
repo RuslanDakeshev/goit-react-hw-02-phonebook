@@ -7,7 +7,7 @@ export class App extends Component {
     contacts: [],
     name: ''
   }
-  handleInputChange = event => {
+  handleNameChange = event => {
     // console.log(event.currentTarget.value);
     this.setState({name: event.currentTarget.value})
 }
@@ -15,7 +15,11 @@ export class App extends Component {
   render() {
     return (
       <>
-        <input type="text" value={this.state.name} onChange={this.handleInputChange}/>
+        {/* <input type="text" value={this.state.name} onChange={this.handleInputChange}/> */}
+        <form>
+          <label htmlFor=''>Имя<input type="text" name="name" value={this.state.name} onChange={this.handleNameChange}/>
+          </label>
+        </form>
       </>
     )
   }
