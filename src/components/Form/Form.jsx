@@ -5,12 +5,14 @@ import { Wrapper, Label, Input, Btn, Container } from './Form.styled';
 
 const nanoid = customAlphabet('1234567890', 3);
 
+const INITIAL_STATE = {
+  name: '',
+  number: '',
+};
+
 class Form extends Component {
   state = {
-    contacts: [],
-    name: '',
-    number: '',
-    id: '',
+    INITIAL_STATE,
   };
   nanoid = customAlphabet('1234567890abcdef', 10);
   nameInputId = nanoid();
@@ -30,7 +32,8 @@ class Form extends Component {
     e.preventDefault();
     console.log(this.state);
 
-    this.props.onSubmit(this.state);
+    this.props.onSubmit({ ...this.state });
+    this.setState({ ...INITIAL_STATE });
 
     this.reset();
   };

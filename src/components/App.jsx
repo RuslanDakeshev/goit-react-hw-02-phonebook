@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Form from './Form/Form';
-import { Filter } from 'Filter/Filter';
-import { ContactList } from 'ContactList/ContactList';
+import { Filter } from 'components/Filter/Filter';
+import { ContactList } from 'components/ContactList/ContactList';
 import { customAlphabet } from 'nanoid';
-import { Container,Title, Subtitle } from './App.styled';
-
+import { Container, Title, Subtitle } from './App.styled';
 
 const nanoid = customAlphabet('1234567890', 3);
 
@@ -19,23 +18,40 @@ export class App extends Component {
     filter: '',
   };
 
+  // handlerSubmit = data => {
+  // const newContact = {
+  //   ...data,
+  //   id: nanoid(),
+
+  //   name: data.name,
+  //   number: data.number,
+  // };
+
+  // this.setState(({ contacts }) =>
+  //   contacts.find(contact => contact.name === data.name)
+  //     ? alert(`${data.name} is already in contacts`)
+  //     : { contacts: [newContact, ...contacts] }
+  // );
+
   handlerSubmit = data => {
     const newContact = {
       ...data,
       id: nanoid(),
-
-      name: data.name,
-      number: data.number,
     };
 
-    this.setState(({ contacts }) =>
-      contacts.find(contact => contact.name === data.name)
-        ? alert(`${data.name} is already in contacts`)
-        : { contacts: [newContact, ...contacts] }
+    const isExist = this.state.contacts.find(
+      contact => contact.name === data.name
     );
+
+    if (isExist) {
+      return alert(`${newContact.name} is already in contacts.`);
+    }
+
+    this.setState(({ contacts }) => ({
+      contacts: [newContact, ...contacts],
+    }));
   };
 
- 
   // formSubmitHandler = data => {
   //   console.log(data);
   //   const newContact = {
@@ -95,5 +111,3 @@ export class App extends Component {
     );
   }
 }
-
-
