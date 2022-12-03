@@ -32,7 +32,7 @@ class Form extends Component {
     e.preventDefault();
     console.log(this.state);
 
-    this.props.onSubmit({ ...this.state });
+    this.props.onSubmit({ ...this.state, id: nanoid()});
     this.setState({ ...INITIAL_STATE });
 
     this.reset();

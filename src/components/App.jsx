@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Form from './Form/Form';
 import { Filter } from 'components/Filter/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
-import { customAlphabet } from 'nanoid';
+// import { customAlphabet } from 'nanoid';
 import { Container, Title, Subtitle } from './App.styled';
 
-const nanoid = customAlphabet('1234567890', 3);
+// const nanoid = customAlphabet('1234567890', 3);
 
 export class App extends Component {
   state = {
@@ -34,21 +34,21 @@ export class App extends Component {
   // );
 
   handlerSubmit = data => {
-    const newContact = {
-      ...data,
-      id: nanoid(),
-    };
+    // const newContact = {
+    //   ...data,
+    //   id: nanoid(),
+    // };
 
     const isExist = this.state.contacts.find(
       contact => contact.name === data.name
     );
 
     if (isExist) {
-      return alert(`${newContact.name} is already in contacts.`);
+      return alert(`${data.name} is already in contacts.`);
     }
 
     this.setState(({ contacts }) => ({
-      contacts: [newContact, ...contacts],
+      contacts: [data, ...contacts],
     }));
   };
 
